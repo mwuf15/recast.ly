@@ -1,6 +1,7 @@
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import exampleVideoData from '../data/exampleVideoData.js';
+import searchYoutube from '../lib/searchYoutube.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,14 +9,20 @@ class App extends React.Component {
 
     //Initializing state for video list and current video
     this.state = {
-      videoList: exampleVideoData,
+      videoList: [{id: {videoId: null}, snippet: {title: null, description: null, thumbnails: {default: {url: null}}}}],
       currentVideoIdx: 0
     };
   }
 
+  componentDidMount() {
+    searchYoutube(options = {key: null, query: null, max: null}, videos => {
+      this.setState({
+        videoList: videos,
+      });
+    });
+  }
+
   //Define a handleVideoClick - method
-  //For now, just accept the event as a parameter
-  //Console.log(event)
   handleVideoClick (event) {
     let selectedVideoIdx = event.target.getAttribute('id');
     this.setState({
