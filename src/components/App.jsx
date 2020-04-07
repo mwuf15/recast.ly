@@ -1,7 +1,5 @@
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
-import exampleVideoData from '../data/exampleVideoData.js';
-// import searchYoutube from '../lib/searchYoutube.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,8 +12,15 @@ class App extends React.Component {
     };
   }
 
+  //if searchYoutube is passed as a prop - invoke props.searchYoutube
+  //else invoke searchYoutube
   componentDidMount() {
-    this.props.searchYoutube();
+    let options = {key: null, max: 5, query: ''};
+    this.props.searchYouTube(options, data => {
+      this.setState({
+        videoList: data
+      });
+    });
   }
 
   //Define a handleVideoClick - method

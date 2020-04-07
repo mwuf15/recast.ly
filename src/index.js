@@ -1,19 +1,6 @@
 // TODO: Render the `App` component to the DOM
 import App from './components/App.js';
-import searchYoutube from '../lib/searchYoutube.js';
-
-let updateStateWithYouTubeData = function(data) {
-  this.setState({
-    videoList: data
-  });
-};
-
-let defineYouTubeSearch = function() {
-  searchYoutube(options, updateStateWithYouTubeData.bind(App));
-};
-
-
+import searchYouTube from './lib/searchYouTube.js';
 
 //Render App to the DOM at id = "app"
-ReactDOM.render(
-  <App searchYoutube = {defineYouTubeSearch} />, document.getElementById('app'));
+ReactDOM.render(<App searchYouTube={searchYouTube} />, document.getElementById('app'));
