@@ -1,30 +1,12 @@
-// Notes: I think this looks good, we just need to refactor this from a class back to a function in order to pass our tests
-
 import VideoListEntry from './VideoListEntry.js';
 
-class VideoList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+var VideoList = props => (
+  <div className="video-list">
+    {/* Map the videos passed by props and pass each video to VideoListEntry to create a component for each video */}
+    {props.videos.map((video, index) => <VideoListEntry video = {video} key={index} />)}
+  </div>
+);
 
-  render () {
-    return (
-      <div className="video-list">
-        {/* <div><h5><em>videoListEntry</em> view goes here</h5></div>
-        <div><h5><em>videoListEntry</em> view goes here</h5></div>
-        <div><h5><em>videoListEntry</em> view goes here</h5></div>
-        <div><h5><em>videoListEntry</em> view goes here</h5></div>
-        <div><h5><em>videoListEntry</em> view goes here</h5></div> */}
-
-        {/* Loop through props.video */}
-        {this.props.videos.map((video, index) => <VideoListEntry video = {video} key={index} />)}
-        {/* Pass a src: {'snippet.thumbnail.default.url} */}
-        {/* Title: snippet.title */}
-        {/* Description: snippet.description */}
-      </div>
-    );
-  }
-}
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
