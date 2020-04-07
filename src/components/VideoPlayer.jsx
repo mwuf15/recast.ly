@@ -1,3 +1,9 @@
+//Steps:
+//Step 1: Accept the Video object as props
+//Steps 2: Construct the src as follows: 'https://www.youtube.com/embed/' + {props.id.videoId} + '?autoplay=1'
+//Step 3: Construct the title as follows: {props.video.snippet.title}
+//Step 4: Construct the video description as follows: {props.video.snippet.description}
+
 var VideoPlayer = () => (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">

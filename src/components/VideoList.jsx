@@ -1,3 +1,5 @@
+// Notes: I think this looks good, we just need to refactor this from a class back to a function in order to pass our tests
+
 import VideoListEntry from './VideoListEntry.js';
 
 class VideoList extends React.Component {

@@ -1,3 +1,7 @@
+// Steps:
+// Step 1: import Video Player
+// Step 2: pass a single video from this.props.videos into the Video Player Component
+
 import VideoList from './VideoList.js';
 class App extends React.Component {
   constructor(props) {
