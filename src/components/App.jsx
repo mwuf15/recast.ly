@@ -5,12 +5,22 @@ import exampleVideoData from '../data/exampleVideoData.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(this.props.videos);
+
     //Initializing state for video list and current video
     this.state = {
       videoList: exampleVideoData,
       currentVideoIdx: 0
     };
+  }
+
+  //Define a handleVideoClick - method
+  //For now, just accept the event as a parameter
+  //Console.log(event)
+  handleVideoClick (event) {
+    let selectedVideoIdx = event.target.getAttribute('id');
+    this.setState({
+      currentVideoIdx: selectedVideoIdx
+    });
   }
 
   render() {
@@ -23,12 +33,11 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            {/* <div><h5><em>videoPlayer</em> view goes here</h5></div> */}
             <VideoPlayer video = {this.state.videoList[this.state.currentVideoIdx]} />
           </div>
           <div className="col-md-5">
-            {/* <div><h5><em>videoList</em> view goes here</h5></div> */}
-            <VideoList videos = {this.state.videoList} />
+            {/* Pass the handleClickVideo method as a Prop */}
+            <VideoList handleVideoClick = {this.handleVideoClick.bind(this)} videos = {this.state.videoList} />
 
           </div>
         </div>

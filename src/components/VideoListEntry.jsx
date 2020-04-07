@@ -4,7 +4,9 @@ var VideoListEntry = (props) => (
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
     </div>
     <div className="media-body">
-      <div className="video-list-entry-title">{props.video.snippet.title}</div>
+      {/* Add the key as an ID to the titleDiv, this would be accomplished by doing props.key */}
+      {/* onClick: invoke the props.handleVideoClick */}
+      <div onClick = {props.handleVideoClick} id = {props.videoIdx} className="video-list-entry-title">{props.video.snippet.title}</div>
       <div className="video-list-entry-detail">{props.video.snippet.description}</div>
     </div>
   </div>

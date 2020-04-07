@@ -3,7 +3,9 @@ import VideoListEntry from './VideoListEntry.js';
 var VideoList = props => (
   <div className="video-list">
     {/* Map the videos passed by props and pass each video to VideoListEntry to create a component for each video */}
-    {props.videos.map((video, index) => <VideoListEntry video = {video} key={index} />)}
+    {/* Also pass the props.handleVideoClick method to each video */}
+    {props.videos.map((video, index) => <VideoListEntry handleVideoClick = {props.handleVideoClick} video = {video} videoIdx={index} key={index} />)}
+    {}
   </div>
 );
 
