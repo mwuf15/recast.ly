@@ -1,5 +1,6 @@
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
+import Search from './Search.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,18 @@ class App extends React.Component {
       });
     });
   }
+  handleNewQuery (event) {
+    let query = event.target.value;
+    //Declare an options object, passing key:null, max: 5, query: query
+    let options = { key: null, max: 5, query: query};
+    //if query.length = 1 or query.length % 3 = 0 then invoke searchYouTube
+    //set state: this.props.searchYouTube(options, data =>{this.setState({videosList:data});});
+    this.props.searchYouTube(options, data => {
+      this.setState({
+        videoList: data
+      });
+    });
+  }
 
   //Define a handleVideoClick - method
   handleVideoClick (event) {
@@ -36,7 +49,8 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            {/* create a prop to child component:handleNewQuery */}
+            <Search handleNewQuery = {this.handleNewQuery.bind(this)}/>
           </div>
         </nav>
         <div className="row">
@@ -44,9 +58,7 @@ class App extends React.Component {
             <VideoPlayer video = {this.state.videoList[this.state.currentVideoIdx]} />
           </div>
           <div className="col-md-5">
-            {/* Pass the handleClickVideo method as a Prop */}
             <VideoList handleVideoClick = {this.handleVideoClick.bind(this)} videos = {this.state.videoList} />
-
           </div>
         </div>
       </div>
