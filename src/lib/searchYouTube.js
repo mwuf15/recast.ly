@@ -10,10 +10,12 @@ var searchYouTube = (options, callback) => {
       part: 'snippet',
       maxResults: options.max,
       type: 'video',
-      videoEmbeddable: true
+      videoEmbeddable: true,
     },
     success: function(data) {
-      callback(data.items);
+      setTimeout(function() {
+        callback(data.items);
+      }, 1000);
     },
     error: function(response) {
       console.log(response);
