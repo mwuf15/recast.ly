@@ -15,19 +15,24 @@ var getURLSearchParams = function(url) {
 
 var hasSameShape = function(objectOne, objectTwo) {
   if (Object.keys(objectOne).length !== Object.keys(objectTwo).length) {
+    console.log(objectOne);
+    console.log(objectTwo);
     return false;
   }
 
   for (var key in objectOne) {
     if (!key in objectTwo) {
+      console.log('test2');
       return false;
     }
 
     if (typeof objectOne[key] !== typeof objectTwo[key]) {
+      console.log('test3');
       return false;
     }
 
     if (Object.prototype.toString.call(objectOne[key]) === '[object Object]') {
+      console.log('test4');
       return hasSameShape(objectOne[key], objectTwo[key]);
     }
   }
@@ -66,6 +71,7 @@ describe('searchYouTube', function() {
     expect(params.key).to.equal('API_KEY');
     expect(params.q).to.equal('cats');
     expect(params.maxResults).to.equal('10');
+    console.log(searchYouTube({ key: 'API_KEY', query: 'cats', max: 10 }, () => {}));
   });
 
   // Same shape means that the data should have the same keys, nested the same way as `exampleVideoData`,
