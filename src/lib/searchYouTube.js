@@ -12,7 +12,9 @@ var searchYouTube = (options, successCB) => {
     },
     contentType: 'application/json',
     dataType: 'json',
-    success: successCB,
+    success: function(data) {
+      successCB(data.items);
+    },
     error: function(error) {
       console.error('failed to retrieve videos', error);
     }
