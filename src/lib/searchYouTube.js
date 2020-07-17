@@ -1,9 +1,12 @@
 var searchYouTube = (options, callback) => {
 
   let myOptions = {
-    part:'snippet',
-    key:'AIzaSyBav7w_SLMOw6PQRLBVrs9ddswHOre3VKs',
-    q: 'NBA'
+    part: 'snippet',
+    key: options.key,
+    q: options.query,
+    maxResults: options.max,
+    type: 'video',
+    videoEmbeddable: 'true'
   };
 
 
@@ -11,24 +14,9 @@ var searchYouTube = (options, callback) => {
     url: 'https://www.googleapis.com/youtube/v3/search',
     type: 'GET',
     data: myOptions,
-    success: callback
+    contentType: 'application/json',
+    success: (data) => { callback(data.items); }
   });
-
-  // $.ajax({
-  //   url: 'https://www.googleapis.com/youtube/v3/search',
-  //   type: 'GET',
-  //   data: {
-  //     part: 'snippet',
-  //     type: 'video',
-  //     key: options.key,
-  //     maxResults: options.max,
-  //     q: options.query,
-  //     videoEmbeddable: 'true'
-  //   },
-  //   contentType: 'application/json',
-  //   success: (data) => { callback(data.items); }
-  // });
-
 };
 
 export default searchYouTube;
