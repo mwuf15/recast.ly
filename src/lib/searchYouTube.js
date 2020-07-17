@@ -1,24 +1,34 @@
-var searchYouTube = (options, successCB) => {
+var searchYouTube = (options, callback) => {
+
+  let myOptions = {
+    part:'snippet',
+    key:'AIzaSyBav7w_SLMOw6PQRLBVrs9ddswHOre3VKs',
+    q: 'NBA'
+  };
+
+
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
     type: 'GET',
-    data: {
-      part: 'snippet',
-      key: options.key,
-      maxResults: options.max,
-      q: options.query,
-      videoEmbeddable: true,
-      type: 'video'
-    },
-    contentType: 'application/json',
-    dataType: 'json',
-    success: function(data) {
-      successCB(data.items);
-    },
-    error: function(error) {
-      console.error('failed to retrieve videos', error);
-    }
+    data: myOptions,
+    success: callback
   });
+
+  // $.ajax({
+  //   url: 'https://www.googleapis.com/youtube/v3/search',
+  //   type: 'GET',
+  //   data: {
+  //     part: 'snippet',
+  //     type: 'video',
+  //     key: options.key,
+  //     maxResults: options.max,
+  //     q: options.query,
+  //     videoEmbeddable: 'true'
+  //   },
+  //   contentType: 'application/json',
+  //   success: (data) => { callback(data.items); }
+  // });
+
 };
 
 export default searchYouTube;
